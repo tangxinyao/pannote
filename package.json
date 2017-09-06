@@ -1,0 +1,40 @@
+{
+  "name": "pannote",
+  "version": "1.0.0",
+  "description": "The smartest note in the world!",
+  "main": "webpack.config.js",
+  "scripts": {
+    "build": "webpack -p",
+    "dev": "webpack-dev-server",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+  },
+  "keywords": [
+    "note"
+  ],
+  "author": "tang",
+  "license": "ISC",
+  "dependencies": {
+    "@types/immutable": "^3.8.7",
+    "@types/node": "^8.0.22",
+    "draft-js": "^0.10.1",
+    "immutable": "^3.8.1",
+    "mobx": "^3.2.1",
+    "mobx-react": "^4.2.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-draggable": "^2.2.6",
+    "react-resizable": "^1.7.1",
+    "uuid": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/draft-js": "^0.10.9",
+    "@types/react": "^15.6.0",
+    "@types/react-dom": "^15.5.1",
+    "@types/uuid": "^3.4.0",
+    "awesome-typescript-loader": "^3.2.2",
+    "source-map-loader": "^0.2.1",
+    "typescript": "^2.4.2",
+    "webpack": "^3.3.0",
+    "webpack-dev-server": "^2.5.1"
+  }
+}
