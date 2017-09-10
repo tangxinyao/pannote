@@ -1,6 +1,6 @@
 import { action, IObservableArray, IObservableValue, observable } from 'mobx';
 
-import { Arrow, Box, Placeholder, Widget } from './editor';
+import { Arrow, Box, Widget } from './editor';
 
 import { cloneElement } from './util';
 
@@ -8,7 +8,7 @@ export class Store {
     public arrows: IObservableArray<Arrow> = observable([]);
     public boxes: IObservableArray<Box> = observable([]);
     public selection: IObservableValue<Box> = observable.box(null);
-    public placeholder: IObservableValue<Placeholder> = observable.box(null);
+    public placeholder: IObservableValue<Box> = observable.box(null);
 
     @action public addWidget(widget: Widget): void {
         if (widget instanceof Arrow) {
@@ -39,7 +39,7 @@ export class Store {
         }
     }
 
-    @action public addPlaceholder(placeholder: Placeholder): void {
+    @action public addPlaceholder(placeholder: Box): void {
         this.placeholder.set(placeholder);
     }
 

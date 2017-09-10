@@ -1,9 +1,9 @@
 import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 
-import { PlaceholderView } from '../editor';
 import { Store } from '../store';
 import { canvasViewFactory } from './canvas-view-factory';
+import { PlaceholderView } from './placeholder-view';
 
 interface ICanvasProps {
     store?: Store;

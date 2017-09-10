@@ -1,6 +1,6 @@
 import { randomUuid } from '../util';
 import { Draggable } from './draggable';
-import { Resizable } from './resizable';
+import { Axis, Resizable } from './resizable';
 
 export class Widget {
     public type: string;
@@ -8,7 +8,7 @@ export class Widget {
     public draggable: Draggable;
     public resizable: Resizable;
 
-    constructor(type: string, axis: string, offsetX: number, offsetY: number, width?: number, height?: number, id?: string) {
+    constructor(type: string, axis: Axis, offsetX: number, offsetY: number, width?: number, height?: number, id?: string) {
         this.type = type;
         this.id = id || randomUuid();
         this.draggable = new Draggable(offsetX, offsetY);

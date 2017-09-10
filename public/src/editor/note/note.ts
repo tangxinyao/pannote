@@ -2,12 +2,13 @@ import { EditorState, RichUtils } from 'draft-js';
 import { action, observable } from 'mobx';
 
 import { Box } from '../box';
+import { Axis } from '../resizable';
 
 export class Note extends Box {
 
     @observable public content: EditorState;
 
-    constructor(type: string, axis: string, offsetX: number, offsetY: number, width?: number, height?: number, content?: EditorState, id?: string) {
+    constructor(type: string, axis: Axis, offsetX: number, offsetY: number, width?: number, height?: number, content?: EditorState, id?: string) {
         super(type, axis, offsetX, offsetY, width, height, id);
         this.content = content || EditorState.createEmpty();
     }

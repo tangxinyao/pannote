@@ -1,30 +1,24 @@
 import { action, computed, observable } from 'mobx';
 import * as Util from '../../util';
 
+export enum Axis { Both, Null, X, Y }
+
 export class Resizable {
-    @observable public axis: string;
+    @observable public axis: Axis;
     @observable public width: number;
     @observable public height: number;
+    @observable.ref public dom: HTMLDivElement;
 
-    constructor(axis = 'both', width = 256, height = 0) {
+    constructor(axis = Axis.Both, width = 256, height = 0) {
         this.axis = axis;
         this.width = width;
         this.height = height;
-    }
-
-    @computed public get deltaX(): number {
-        const x = Util.expanding(this.width);
-        return x > 0 ? x : 0;
-    }
-
-    @computed public get deltaY(): number {
-        const y = Util.expanding(this.height);
-        return y > 0 ? y : 0;
+        this.dom = null;
     }
 
     @action public resizeBy(deltaW: number, deltaH: number): void {
-        const canDragX = this.axis === 'both' || this.axis === 'x';
-        const canDragY = this.axis === 'both' || this.axis === 'y';
+        const canDragX = this.axis === Axis.Both || this.axis === Axis.X;
+        const canDragY = this.axis === Axis.Both || this.axis === Axis.Y;
 
         if (canDragX) {
             this.width = this.width + deltaW;
@@ -33,5 +27,15 @@ export class Resizable {
         if (canDragY) {
             this.height = this.height + deltaH;
         }
+    }
+
+    @computed public get deltaX(): number {
+        const x = 32 * Math.ceil((this.dom.clientWidth + 20) / 32);
+        return x;
+    }
+
+    @computed public get deltaY(): number {
+        const y = 32 * Math.ceil((this.dom.clientHeight + 20) / 32);
+        return y;
     }
 }

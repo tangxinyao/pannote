@@ -1,5 +1,4 @@
-import { action, observable } from 'mobx';
-import { gridding } from '../../util';
+import { action, computed, observable } from 'mobx';
 
 export class Draggable {
     @observable public offsetX: number;
@@ -10,14 +9,14 @@ export class Draggable {
         this.offsetY = offsetY;
     }
 
-    public get x(): number {
-        const x = gridding(this.offsetX);
-        return x > 0 ? x : 0;
+    @computed public get x(): number {
+        const offsetX = this.offsetX;
+        return offsetX > 0 ? 32 * Math.round(offsetX / 32) : 0;
     }
 
-    public get y(): number {
-        const y = gridding(this.offsetY);
-        return y > 0 ? y : 0;
+    @computed public get y(): number {
+        const offsetY = this.offsetY;
+        return offsetY > 0 ? 32 * Math.round(offsetY / 32) : 0;
     }
 
     @action public moveBy(x: number, y: number): void {
