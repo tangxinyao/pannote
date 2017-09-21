@@ -2,7 +2,6 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 import { Store } from '../../store';
-import * as Util from '../../util';
 import { Widget } from '../widget';
 
 export interface IDraggableProps {
@@ -15,37 +14,31 @@ export interface IDraggableProps {
 @observer
 export class DraggableView extends React.Component<IDraggableProps, any> {
 
-    public dom: HTMLDivElement = null;
-
     public handleStart: DraggableEventHandler = () => {
         this.props.store.addPlaceholder(this.props.widget);
     }
 
     public handleStop: DraggableEventHandler = () => {
         const { store, widget } = this.props;
-        const { x, y } = store.placeholder.get().draggable;
-
+        const { x, y } = widget.draggable;
         widget.draggable.moveTo(x, y);
+
         store.removePlaceholder();
     }
 
     public handleDrag: DraggableEventHandler = (e, data) => {
-        const draggable = this.props.widget.draggable;
-        draggable.moveBy(data.deltaX, data.deltaY);
-    }
-
-    public updateDOM = (dom: HTMLDivElement) => {
-        this.dom = dom;
+        this.props.widget.draggable.moveBy(data.deltaX, data.deltaY);
     }
 
     public render() {
-        const { cancel, widget } = this.props;
+        const { cancel, store, widget } = this.props;
         const { draggable } = this.props.widget;
+        const selected = store.placeholder.get() === widget;
         return (
             <DraggableCore cancel={cancel} onDrag={this.handleDrag} onStart={this.handleStart} onStop={this.handleStop}>
-                <div ref={this.updateDOM} style={{
+                <div style={{
                     backgroundColor: '#fff',
-                    border: 'solid 1px #34352c',
+                    border: selected ? 'solid 1px #34352c' : 'solid 1px #c9cabb',
                     boxSizing: 'border-box',
                     cursor: 'move',
                     left: draggable.offsetX,

@@ -1,4 +1,5 @@
-import { action, computed, observable } from 'mobx';
+import { action, autorun, computed, observable } from 'mobx';
+import { Widget } from '../widget';
 
 export class Draggable {
     @observable public offsetX: number;
@@ -11,12 +12,12 @@ export class Draggable {
 
     @computed public get x(): number {
         const offsetX = this.offsetX;
-        return offsetX > 0 ? 32 * Math.round(offsetX / 32) : 0;
+        return offsetX > 0 ? 16 * Math.round(offsetX / 16) : 0;
     }
 
     @computed public get y(): number {
         const offsetY = this.offsetY;
-        return offsetY > 0 ? 32 * Math.round(offsetY / 32) : 0;
+        return offsetY > 0 ? 16 * Math.round(offsetY / 16) : 0;
     }
 
     @action public moveBy(x: number, y: number): void {

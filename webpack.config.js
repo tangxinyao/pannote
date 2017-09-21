@@ -1,8 +1,10 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        main: './public/src/index.tsx'
+        main: './public/src/index/index.tsx',
+        validation: './public/src/validation/index.tsx'
     },
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -28,5 +30,12 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'public'),
         compress: true
-    }
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name:"commons",
+            filename:"dist/commons.js",
+            minChunks:2
+        })
+    ]
 };

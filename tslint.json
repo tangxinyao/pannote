@@ -12,6 +12,7 @@
         "no-console": [
             "log"
         ],
+        "prefer-for-of": false,
         "quotemark": [
             true,
             "single",

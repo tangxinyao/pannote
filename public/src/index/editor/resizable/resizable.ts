@@ -30,12 +30,12 @@ export class Resizable {
     }
 
     @computed public get deltaX(): number {
-        const x = 32 * Math.ceil((this.dom.clientWidth + 20) / 32);
+        const x = 16 * Math.ceil((this.dom.clientWidth + 20) / 16);
         return x;
     }
 
     @computed public get deltaY(): number {
-        const y = 32 * Math.ceil((this.dom.clientHeight + 20) / 32);
+        const y = 16 * Math.ceil((this.dom.clientHeight + 20) / 16);
         return y;
     }
 }

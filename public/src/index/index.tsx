@@ -23,7 +23,7 @@ export class App extends React.Component<any, any> {
                         <CanvasView />
                     </div>
                 </div>
-            </Provider >
+            </Provider>
         );
     }
 

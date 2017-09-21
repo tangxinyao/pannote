@@ -20,6 +20,9 @@ export const CanvasView = inject('store')(
                         store.boxes.map(canvasViewFactory(store))
                     }
                     {
+                        store.containers.map(canvasViewFactory(store))
+                    }
+                    {
                         placeholder && <PlaceholderView placeholder={placeholder} />
                     }
                 </article>

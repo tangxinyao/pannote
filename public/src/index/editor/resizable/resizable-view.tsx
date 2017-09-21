@@ -2,10 +2,12 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 import { DraggableCore, DraggableEventHandler } from 'react-draggable';
 
+import { Store } from '../../store';
 import { Widget } from '../widget';
 
 interface IResizableProps {
     widget: Widget;
+    store: Store;
     children: React.ReactElement<any>;
 }
 
@@ -23,7 +25,9 @@ export class ResizableView extends React.Component<IResizableProps, any> {
     }
 
     public render() {
-        const { width, height } = this.props.widget.resizable;
+        const { store, widget } = this.props;
+        const { width, height } = widget.resizable;
+        const selected = store.selection.get() === widget;
         return (
             <div ref={this.ref} className="react-resizable" style={{ width, height: height ? height : null }}>
                 {this.props.children}

@@ -19,7 +19,7 @@ export class NoteCanvasView extends React.Component<INoteCanvasView, any> {
         const { note, store } = this.props;
         return (
             <DraggableView store={store} widget={note} cancel=".react-resizable">
-                <ResizableView widget={note}>
+                <ResizableView store={store} widget={note}>
                     <Editor editorState={note.content} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} />
                 </ResizableView>
             </DraggableView>
